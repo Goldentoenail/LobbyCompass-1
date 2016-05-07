@@ -5,20 +5,15 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
-import java.util.logging.Logger;
 
 public class LobbyCompass
 extends JavaPlugin implements Listener{
-    Logger log;
     public static String prefix = "\u00a7f[\u00a7eCompass\u00a7f] ";
     public static String use_Permission = "lobbycompass.use";
     public static String get_Permission = "lobbycompass.get";
     public static String admin_Permission = "lobbycompass.admin";
 
-    @Override
     public void onEnable() {
-        log = this.getLogger();
-        log.info("LobbyCompass Has Been Enabled!");
         this.getCommand("lobbycompass").setExecutor((CommandExecutor)new LobbyCompassCommand((Plugin)this));
         Bukkit.getPluginManager().registerEvents((Listener)new LobbyCompassCommand((Plugin)this), (Plugin)this);
         
@@ -50,11 +45,10 @@ extends JavaPlugin implements Listener{
         this.getConfig().options().copyDefaults(true);
         this.saveConfig();
         this.reloadConfig();
+        this.getLogger().info("LobbyCompass Has Been Enabled!");
     }
 
-    @Override
     public void onDisable() {
-        log = this.getLogger();
-        log.info("LobbyCompass Has Been Disabled!");
+    	this.getLogger().info("LobbyCompass Has Been Disabled!");
     }
 }
